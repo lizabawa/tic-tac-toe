@@ -1,3 +1,27 @@
-h1 {
-    color: purple;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(114, 114, 209);
+    padding: 5px;
 }
+
+.grid-item {
+    background-color: rgb(241, 227, 206);
+    border: 1px solid;
+    padding: 40px;
+}
+
+/* 
+CSS TO HELP VISUALIZE COLUMN/ROW BORDERS
+
+.container {
+    background: gray;
+}
+
+.col {
+    border: blue dotted;
+}
+
+.row {
+    border: red solid;
+}  */
