@@ -25,4 +25,5 @@
 
 .player-turn {
     background-color: rgb(241, 227, 206);
+    border: 4px dotted rgb(114, 114, 209);
 }

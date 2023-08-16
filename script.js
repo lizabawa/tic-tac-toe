@@ -19,17 +19,30 @@ if (playerTurn === 0) {
     console.log("playerTwo turn")
 }
 
+
 //EVENT LISTENERS
 button.addEventListener("click", () => {
     location.reload() //this reloads the page but all user input will be lost
 
 })
 
-for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and if it's clicked returns a response
+for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and performs the event listener
     gridItem[i].addEventListener("click", () => {
+        if (playerTurn === 0) {
+            gridItem[i].innerText = playerOneChoice
+            playerOne.classList.remove("player-turn") //removes playerOne box highlight
+            playerTwo.classList.add("player-turn") //adds playerTwo box highlight
+            playerTurn = 1 //switches playerTurn back to playerTwo
+            
+        } else {
+            gridItem[i].innerText = playerTwoChoice
+            playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
+            playerOne.classList.add("player-turn") //adds playerOne box highlight
+            playerTurn = 0 //switches playerTurn back to playerOne
+        }
         
-        gridItem[i].innerText = playerOneChoice //will change the inner text to "player choice" which we will assign later
-        gridItem[i].innerText = playerTwoChoice
+        // gridItem[i].innerText = playerOneChoice //will change the inner text to "player choice" which we will assign later
+        // gridItem[i].innerText = playerTwoChoice
     })
 }
 
@@ -42,8 +55,6 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and if 
     define playerOne/Two as X or O, can give them a choice to choose if there's time
     set conditions for if player one goes then it's player twos turn
 
-    if it's player one's turn, it will be indicated by their container being highlighted
-    everytime the page refreshes one player is randomly chosen to start
     if a players box is highlighted, the other player CANNOT GO
 -set win/lose conditions
 -set an alert for win or lose
