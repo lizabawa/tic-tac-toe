@@ -11,17 +11,14 @@
     padding: 40px;
 }
 
-/* 
-CSS TO HELP VISUALIZE COLUMN/ROW BORDERS
-
 .container {
     background: gray;
 }
 
 .col {
-    border: blue dotted;
+    border: rgb(241, 227, 206) solid;
 }
 
 .row {
-    border: red solid;
-}  */
+    border: rgb(114, 114, 209) solid;
+} 
