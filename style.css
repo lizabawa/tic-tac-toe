@@ -22,3 +22,7 @@
 .row {
     border: rgb(114, 114, 209) solid;
 } 
+
+.player-turn {
+    background-color: rgb(241, 227, 206);
+}
