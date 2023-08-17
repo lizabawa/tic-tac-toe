@@ -10,15 +10,7 @@ const playerOChoice = "O"
 
 //CORE LOGIC
 let playerTurn = Math.floor(Math.random() * players.length) //randomly picks a player
-console.log(playerTurn)
-if (playerTurn === 0) {
-    playerOne.classList.add("player-turn") //if it's playerOne's turn, their box is highlighted
-    console.log("playerOne Turn")
-} else {
-    playerTwo.classList.add("player-turn") //else player Two's box is highlighted
-    console.log("playerTwo turn")
-}
-
+playerTurn === 0 ? playerOne.classList.add("player-turn") : playerTwo.classList.add("player-turn") //if it's playerOne's turn, their box is highlighted else player Two's box is highlighted
 
 //EVENT LISTENERS
 button.addEventListener("click", () => {
@@ -28,6 +20,7 @@ button.addEventListener("click", () => {
 
 for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and performs the event listener
     gridItem[i].addEventListener("click", () => {
+       
         if (gridItem[i].innerText === "X" || gridItem[i].innerText === "O") { //stops users from choosing a spot that is already taken
             alert("Spot is already taken! Choose another move.")
         } else {
@@ -42,12 +35,33 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and per
                 playerOne.classList.add("player-turn") //adds playerOne box highlight
                 playerTurn = 0 //switches playerTurn back to playerOne
             };
+        };
+
+        if (
+            gridItem[0].innerText === gridItem[1].innerText && gridItem[0].innerText === gridItem[2].innerText && gridItem[1].innerText === gridItem[2].innerText ||
+            gridItem[3].innerText === gridItem[4].innerText && gridItem[3].innerText === gridItem[5].innerText && gridItem[4].innerText === gridItem[5].innerText ||
+            gridItem[6].innerText === gridItem[7].innerText && gridItem[6].innerText === gridItem[8].innerText && gridItem[7].innerText === gridItem[8].innerText ||
+            gridItem[0].innerText === gridItem[3].innerText && gridItem[0].innerText === gridItem[6].innerText && gridItem[3].innerText === gridItem[6].innerText ||
+            gridItem[1].innerText === gridItem[4].innerText && gridItem[1].innerText === gridItem[7].innerText && gridItem[4].innerText === gridItem[7].innerText ||
+            gridItem[2].innerText === gridItem[5].innerText && gridItem[2].innerText === gridItem[8].innerText && gridItem[5].innerText === gridItem[8].innerText ||
+            gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText ||
+            gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
+            ) {
+        console.log(`win!`)
+        } else {
+            console.log("it's a tie")
         }
+
     });
 };
+
+
+
+
 
 /* 
 
 -set win/lose conditions
--set an alert for win or lose
+    map a new array of itemgrid.innerHTML and check if
+-set an alert for win or lose and which player won/tie
 */
