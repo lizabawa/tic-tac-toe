@@ -8,15 +8,40 @@ const players = [playerOne, playerTwo]
 const playerXChoice = "X"
 const playerOChoice = "O"
 let gameOver = false; //Initializes game over as false
+let checkTieArray = []
+let korokXPhrase = document.querySelector("#korok-x-phrase")
+let korokOPhrase = document.querySelector("#korok-o-phrase")
 
-//CORE LOGIC
 let playerTurn = Math.floor(Math.random() * players.length) //randomly picks a player
-playerTurn === 0 ? playerOne.classList.add("player-turn") : playerTwo.classList.add("player-turn") //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
+if (playerTurn === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
+    playerOne.classList.add("player-turn") 
+    korokXPhrase.innerText = "Korok X begins?! Wow!"
+} else {
+    playerTwo.classList.add("player-turn")
+    korokOPhrase.innerText = "Woo O gets to begin!!"
+ } 
+
+// function win() = {
+
+// } WILL MOVE WIN LOGIC INTO HERE WHEN I CLEAN UP CODE
+
+// function checkTie(item) {
+//     if (checkTieArray.every(item => item === "X" || item === "O")){
+//         gameOver = true;
+//         setTimeout(() => {
+//             alert("it tie")
+//         }, 50)
+//     }
+// }
+
+// for (let item = 0; item < gridItem.length; item++) {
+//     let gridItems = gridItem[item].innerText
+//     checkTieArray.push(gridItems)
+// }
 
 //EVENT LISTENERS
 button.addEventListener("click", () => {
     location.reload() //this reloads the page but all user input will be lost
-
 })
 
 for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and performs the event listener
@@ -46,11 +71,13 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         ) {
                             gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player X Wins!")}, 50) //delays winner alert by 100ms
-                            
+                            // checkTie()
                     } else {
                         playerOne.classList.remove("player-turn") //removes playerOne box highlight
                         playerTwo.classList.add("player-turn") //adds playerTwo box highlight
                         playerTurn = 1 //switches playerTurn back to playerTwo
+                        korokOPhrase.innerText = "Woo O's turn!!"
+                        korokXPhrase.innerText = "Is it my turn yet?"
                     }
             } else {
                 gridItem[i].innerText = playerOChoice //changes text to playerO's choice
@@ -66,37 +93,32 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         ) {
                             gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player O Wins!")}, 50) //delays winner alert by 100ms
+                            // checkTie()
                     } else {
                         playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
                         playerOne.classList.add("player-turn") //adds playerOne box highlight
                         playerTurn = 0 //switches playerTurn back to playerOne
+                        korokXPhrase.innerText = "It's X's turn!"
+                        korokOPhrase.innerText = "Sigh..waiting for my turn"
                     }
             };
         };
-    }
+
+       
 
 
+    } //end gridItemClicked()
 }; //end grid-item for loop
 
 
 
 
 
-        // for (let item = 0; item < gridItem.length; item++) {
-        //     let gridItems = gridItem[item].innerText
-        //     isTie = gridItems === "X" || gridItems === "O"
-        //         console.log(gridItems)
-        //         // if (gridItems[item] !== "X" || gridItems !== "O"){
-        //         //     console.log("nothing")
-        //         // } else {
-        //         //     console.log("it a tie")
-        //         // }
 
-        // }
+
 
 /* 
 BUGS:
 -set an alert for tie
--game should stop after a win without refreshing
 -create text node that indicates who's turn it is along with the box highlight
 */
