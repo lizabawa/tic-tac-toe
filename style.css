@@ -3,6 +3,7 @@
     grid-template-columns: auto auto auto;
     background-color: rgb(114, 114, 209);
     padding: 5px;
+    color: rgb(89, 124, 98);
 }
 
 .grid-item {
@@ -13,17 +14,36 @@
 
 .container {
     background: rgb(89, 124, 98);
+    margin: 50px;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .col {
     border: rgb(241, 227, 206) solid;
+    padding: 40px
 }
 
 .row {
-    border: rgb(114, 114, 209) solid;
+    margin: 5px;
 } 
 
 .player-turn {
     background-color: rgb(241, 227, 206);
     border: 4px dotted rgb(114, 114, 209);
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+body {
+    background-color: rgb(150, 83, 72);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+button {
+    background-color: rgb(241, 227, 206);
+    margin: 10px;
 }

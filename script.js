@@ -18,7 +18,7 @@ button.addEventListener("click", () => {
 
 })
 
-for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and performs the event listener
+for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and performs the event listener
     gridItem[i].addEventListener("click", () => {
         if (gridItem[i].innerText === "X" || gridItem[i].innerText === "O") { //stops users from choosing a spot that is already taken
             alert("Spot is already taken! Choose another move.")
@@ -35,7 +35,7 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and per
                         gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText ||
                         gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
                         ) {
-                            setTimeout(() => {alert("Player X Wins!")}, 50) //delays the alert by 100ms
+                            setTimeout(() => {alert("Player X Wins!")}, 50) //delays winner alert by 100ms
                     } else {
                         playerOne.classList.remove("player-turn") //removes playerOne box highlight
                         playerTwo.classList.add("player-turn") //adds playerTwo box highlight
@@ -53,7 +53,8 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and per
                         gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText ||
                         gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
                         ) {
-                            setTimeout(() => {alert("Player O Wins!")}, 50) //delays the alert by 100ms
+                            setTimeout(() => {alert("Player O Wins!")}, 50) //delays winner alert by 100ms
+
                     } else {
                         playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
                         playerOne.classList.add("player-turn") //adds playerOne box highlight
@@ -61,8 +62,22 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and per
                     }
             };
         };
-    });
-};
+
+        // for (let item = 0; item < gridItem.length; item++) {
+        //     let gridItems = gridItem[item].innerText
+        //     isTie = gridItems === "X" || gridItems === "O"
+        //         console.log(gridItems)
+        //         // if (gridItems[item] !== "X" || gridItems !== "O"){
+        //         //     console.log("nothing")
+        //         // } else {
+        //         //     console.log("it a tie")
+        //         // }
+
+        // }
+
+    });  //end grid-item event listener
+}; //end grid-item for loop
+
 
 
 
@@ -70,9 +85,7 @@ for (let i = 0; i <gridItem.length; i++) { //Iterates through grid items and per
 
 /* 
 BUGS:
--winners last selected choice doesn't show before showing that they won
--set win/lose conditions
-    map a new array of itemgrid.innerHTML and check if
--set an alert for win or lose and which player won/tie
-game should stop after a win without refreshing
+-set an alert for tie
+-game should stop after a win without refreshing
+-create text node that indicates who's turn it is along with the box highlight
 */
