@@ -7,6 +7,7 @@ const playerTwo = document.querySelector("#player-two")
 const players = [playerOne, playerTwo]
 const playerXChoice = "X"
 const playerOChoice = "O"
+let gameOver = false; //Initializes game over as false
 
 //CORE LOGIC
 let playerTurn = Math.floor(Math.random() * players.length) //randomly picks a player
@@ -19,11 +20,19 @@ button.addEventListener("click", () => {
 })
 
 for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and performs the event listener
-    gridItem[i].addEventListener("click", () => {
-        if (gridItem[i].innerText === "X" || gridItem[i].innerText === "O") { //stops users from choosing a spot that is already taken
+    gridItem[i].addEventListener("click", gridItemClicked); //gridItem event listener
+
+    function gridItemClicked(event) {
+        if (gameOver) {
+            return; //Does nothing if the game is already over
+        }
+
+        const clickedItem = event.target; //sets whichever grid item is clicked on as the event target
+
+        if (clickedItem.innerText === "X" || clickedItem.innerText === "O") { //stops users from choosing a spot that is already taken
             alert("Spot is already taken! Choose another move.")
         } else {
-            if (playerTurn === 0) {
+            if (playerTurn === 0) { 
                 gridItem[i].innerText = playerXChoice //changes text to playerX's choice
                     if ( //checks for winning conditions for Player X
                         gridItem[0].innerText === gridItem[1].innerText && gridItem[0].innerText === gridItem[2].innerText && gridItem[1].innerText === gridItem[2].innerText ||
@@ -35,7 +44,9 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText ||
                         gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
                         ) {
+                            gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player X Wins!")}, 50) //delays winner alert by 100ms
+                            
                     } else {
                         playerOne.classList.remove("player-turn") //removes playerOne box highlight
                         playerTwo.classList.add("player-turn") //adds playerTwo box highlight
@@ -53,8 +64,8 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText ||
                         gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
                         ) {
+                            gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player O Wins!")}, 50) //delays winner alert by 100ms
-
                     } else {
                         playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
                         playerOne.classList.add("player-turn") //adds playerOne box highlight
@@ -62,6 +73,14 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                     }
             };
         };
+    }
+
+
+}; //end grid-item for loop
+
+
+
+
 
         // for (let item = 0; item < gridItem.length; item++) {
         //     let gridItems = gridItem[item].innerText
@@ -74,14 +93,6 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
         //         // }
 
         // }
-
-    });  //end grid-item event listener
-}; //end grid-item for loop
-
-
-
-
-
 
 /* 
 BUGS:
