@@ -1,7 +1,6 @@
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    background-color: rgb(114, 114, 209);
     padding: 5px;
     color: rgb(89, 124, 98);
 }
@@ -13,7 +12,7 @@
 }
 
 .container {
-    background: rgb(89, 124, 98);
+    background: rgb(102, 144, 112);
     margin: 50px;
     padding: 20px;
     border-radius: 15px;
@@ -30,7 +29,7 @@
 
 .player-turn {
     background-color: rgb(241, 227, 206);
-    border: 4px dotted rgb(114, 114, 209);
+    border: 4px dotted rgb(9, 84, 103);
 }
 
 img {
@@ -40,10 +39,16 @@ img {
 
 body {
     background-color: rgb(150, 83, 72);
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    color: rgb(9, 84, 103);
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-family: 'Poiret One', cursive;
+    font-family: 'Tilt Prism', cursive;
+    font-weight: bold;
 }
 
 button {
     background-color: rgb(241, 227, 206);
-    margin: 10px;
+    margin-top: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
