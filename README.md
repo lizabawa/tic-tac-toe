@@ -2,7 +2,7 @@
 
 ## Product Design/Wire-Frame
 -Wireframe:
-![] (images/tic-tac-toe-wirefram.pdf)
+![] (images/tic-tac-toe-wireframe.jpg)
 
 ## User Interface
 
