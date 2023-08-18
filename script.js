@@ -12,6 +12,10 @@ let korokXPhrase = document.querySelector("#korok-x-phrase")
 let korokOPhrase = document.querySelector("#korok-o-phrase")
 let checkTieArray = []
 
+let korokResetSound = new Audio('media/korok_seed.mp3')
+korokResetSound.play()
+let korokLaughSound = new Audio('media/yahaha.mp3')
+
 let playerTurn = Math.floor(Math.random() * players.length) //randomly picks a player
 if (playerTurn === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
     playerOne.classList.add("player-turn") 
@@ -57,6 +61,7 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText
                         ) {
                             gameOver = true; //changes game over as true
+                            korokLaughSound.play()
                             setTimeout(() => {swal("Player X Wins!")}, 50) //delays winner alert by 100ms
                     } else {
                         playerOne.classList.remove("player-turn") //removes playerOne box highlight
