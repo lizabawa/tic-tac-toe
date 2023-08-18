@@ -117,5 +117,5 @@ console.log(gameOver)
 
 /* 
 BUGS:
--fix the tie alert still showing up after after game has won already
+-Once you remove the grid-items' innerText's from the HTML there is an error showing the first move wins
 */
