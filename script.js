@@ -8,9 +8,9 @@ const players = [playerOne, playerTwo]
 const playerXChoice = "X"
 const playerOChoice = "O"
 let gameOver = false; //Initializes game over as false
-let checkTieArray = []
 let korokXPhrase = document.querySelector("#korok-x-phrase")
 let korokOPhrase = document.querySelector("#korok-o-phrase")
+let checkTieArray = []
 
 let playerTurn = Math.floor(Math.random() * players.length) //randomly picks a player
 if (playerTurn === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
@@ -25,20 +25,6 @@ if (playerTurn === 0) { //if it's playerX's turn, their box is highlighted else 
 
 // } WILL MOVE WIN LOGIC INTO HERE WHEN I CLEAN UP CODE
 
-// function checkTie(item) {
-//     if (checkTieArray.every(item => item === "X" || item === "O")){
-//         gameOver = true;
-//         setTimeout(() => {
-//             alert("it tie")
-//         }, 50)
-//     }
-// }
-
-// for (let item = 0; item < gridItem.length; item++) {
-//     let gridItems = gridItem[item].innerText
-//     checkTieArray.push(gridItems)
-// }
-
 //EVENT LISTENERS
 button.addEventListener("click", () => {
     location.reload() //this reloads the page but all user input will be lost
@@ -48,6 +34,7 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
     gridItem[i].addEventListener("click", gridItemClicked); //gridItem event listener
 
     function gridItemClicked(event) {
+        
         if (gameOver) {
             return; //Does nothing if the game is already over
         }
@@ -71,7 +58,6 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         ) {
                             gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player X Wins!")}, 50) //delays winner alert by 100ms
-                            // checkTie()
                     } else {
                         playerOne.classList.remove("player-turn") //removes playerOne box highlight
                         playerTwo.classList.add("player-turn") //adds playerTwo box highlight
@@ -93,7 +79,6 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                         ) {
                             gameOver = true; //changes game over as true
                             setTimeout(() => {alert("Player O Wins!")}, 50) //delays winner alert by 100ms
-                            // checkTie()
                     } else {
                         playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
                         playerOne.classList.add("player-turn") //adds playerOne box highlight
@@ -104,9 +89,21 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
             };
         };
 
-       
-
-
+        //Logic to check for a tie
+        let gridItems = gridItem[i].innerText //grabs all the X's and O's entered
+        checkTieArray.push(gridItems) //push X's and O's into a new array
+        if (checkTieArray.length === 9) { //once all boxes are filled, checks for a tie
+            checkTie()
+        }
+           
+        function checkTie() {
+            if (checkTieArray.every(item => item === "X" || item === "O")){ //checks every item in the array for matching values
+                gameOver = true;
+                setTimeout(() => {
+                    alert("Ya-ha-ha it's a tie!")
+                }, 50)
+            }
+        } //end checkTie() function
     } //end gridItemClicked()
 }; //end grid-item for loop
 
