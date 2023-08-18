@@ -2,7 +2,7 @@
 
 ## Product Design/Wire-Frame
 -Wireframe:
-![] (images/tic-tac-toe-wireframe.jpg)
+![] (https://github.com/lizabawa/tic-tac-toe/blob/main/images/tic-tac-toe-wireframe.jpg)
 
 ## User Interface
 
