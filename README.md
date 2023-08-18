@@ -34,7 +34,7 @@
 
 ## Favorite Functions Logic
 
-## List of Technologies Used
--**Bootstrap:** https://getbootstrap.com/docs/5.3/getting-started/download/
--**Korok O Image:** https://dribbble.com/shots/4133074-Yahaha
--**Korok X Image:** https://dribbble.com/shots/3495292-Yahaha-Korok-Chio
+## List of Technologies and Resources Used
+- **Bootstrap:** https://getbootstrap.com/docs/5.3/getting-started/download/
+- **Korok O Image:** https://dribbble.com/shots/4133074-Yahaha
+- **Korok X Image:** https://dribbble.com/shots/3495292-Yahaha-Korok-Chio
