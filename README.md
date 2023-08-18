@@ -28,7 +28,9 @@
 - **HTML:** I kept the HTML layout simple. I used Bootstrap to create the gameboard columns, and the tic tac toe board itself consists of a grid-container with grid-items. I did not like how Bootstrap buttons look and so preferred to customize it myself.
 - **CSS:** One of the pivotal pieces of CSS was the .player-turn. I wanted the CSS of the Korok box to change depending on whose turn it was, so I gave it a different background-color and a dotted outline.
 - **Javascript:** I organized the logic by keeping all my variables at the top and event listeners below. At the start of each new round, I wanted a random player to be chosen to go first to be fair, so I used the Math.floor(Math.random()) method. Along with the CSS changing to dictate whose turn it is, I also utilized Javascript classList to add and remove the Korok's phrases depending on who starts and whose turn it is.
-    - I had two event listeners, one to reload the page when the Reset Game button is clicked, and one to listen every time a grid-item was clicked on.
+    - **Event Listeners:** I had two event listeners, one to reload the page when the Reset Game button is clicked, and one to listen every time a grid-item was clicked on.
+    - **Win Logic:** I listed all the ways a Korok could win using if/else statements.
+    - **Tie Logic:** I created a separate function to checkTie that pushes innerText to a new array everytime the innerText is changed, and then iterated through this array to check if all the innerText matched "X" or "O" AND if the game was not yet over, which indicated a tie.
 
 ## Favorite Functions Logic
 
