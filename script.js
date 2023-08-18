@@ -88,19 +88,20 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                     }
             };
         };
-
+console.log(gameOver)
         //Logic to check for a tie
         let gridItems = gridItem[i].innerText //grabs all the X's and O's entered
         checkTieArray.push(gridItems) //push X's and O's into a new array
-        if (checkTieArray.length === 9) { //once all boxes are filled, checks for a tie
+        if (checkTieArray.length === 9 && gameOver === false) { //check for tie if all boxes are filled AND gameOver still false
             checkTie()
         }
-           
+        
+        
         function checkTie() {
             if (checkTieArray.every(item => item === "X" || item === "O")){ //checks every item in the array for matching values
                 gameOver = true;
                 setTimeout(() => {
-                    alert("Ya-ha-ha it's a tie!")
+                    alert("Oooo it's a tie")
                 }, 50)
             }
         } //end checkTie() function
@@ -116,6 +117,5 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
 
 /* 
 BUGS:
--set an alert for tie
--create text node that indicates who's turn it is along with the box highlight
+-fix the tie alert still showing up after after game has won already
 */
