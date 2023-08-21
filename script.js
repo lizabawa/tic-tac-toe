@@ -17,26 +17,18 @@ const korokYahahaSound = new Audio("media/yahaha.mp3");
 const korokSeedSound = new Audio("media/korok_seed.mp3");
 const korokRockSound = new Audio("media/dropping_rock_korok.mp3");
 
-window.addEventListener("load", () => {
-  //upon window loading Event Listener
-  swal({
-    title: "You found us!",
-    text: "Let's start the game!",
-    button: "Ahh yiss!",
-    closeOnClickOutside: false,
-  });
-});
-
-let playerRandom = Math.floor(Math.random() * players.length); //randomly picks a player
-if (playerRandom === 0) {
+function playerRandom() {
+  let playerRandom = Math.floor(Math.random() * players.length);
   //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
-  playerTurn = "X";
-  korokX.classList.add("player-turn");
-  korokXPhrase.innerText = '"Korok X begins?! Wow!"';
-} else {
-  playerTurn = "O";
-  korokO.classList.add("player-turn");
-  korokOPhrase.innerText = '"Woo O gets to begin!!"';
+  if (playerRandom === 0) {
+    playerTurn = "X";
+    korokX.classList.add("player-turn");
+    korokXPhrase.innerText = '"Korok X begins?! Wow!"';
+  } else {
+    playerTurn = "O";
+    korokO.classList.add("player-turn");
+    korokOPhrase.innerText = '"Woo O gets to begin!!"';
+  }
 }
 
 function checkWin() {
@@ -75,8 +67,8 @@ function checkWin() {
 }
 
 function checkTie() {
+  //checks every item in the array for matching values
   if (checkTieArray.every((item) => item === "X" || item === "O")) {
-    //checks every item in the array for matching values
     gameOver = true;
     korokRockSound.play();
     setTimeout(() => {
@@ -84,29 +76,40 @@ function checkTie() {
     }, 50);
   }
 }
+//upon window loading Event Listener
+window.addEventListener("load", () => {
+  swal({
+    title: "You found us!",
+    text: "Let's start the game!",
+    button: "Ahh yiss!",
+    closeOnClickOutside: false,
+  });
+  playerRandom();
+});
 
+//Iterates through grid items and performs the event listener
 for (let i = 0; i < gridItem.length; i++) {
-  //Iterates through grid items and performs the event listener
-  gridItem[i].addEventListener("click", gridItemClicked); //listens for if a gridItem is clicked
+  //listens for if a gridItem is clicked
+  gridItem[i].addEventListener("click", gridItemClicked);
+  //RESET GAME BUTTON EVENT LISTENER
   button.addEventListener("click", () => {
-    //RESET GAME BUTTON EVENT LISTENER
     korokYahahaSound.play();
     gridItem[i].innerHTML = "";
     checkTieArray = [];
     gameOver = false;
   });
+  //sets whichever grid item is clicked on as the event target
   function gridItemClicked(event) {
-    const clickedItem = event.target; //sets whichever grid item is clicked on as the event target
+    const clickedItem = event.target;
+    //keeps the game from continuing once a winner has been declared
     if (gameOver === true) {
-      //keeps the game from continuing once a winner has been declared
       return;
-    }
-
+    };
+    //stops users from choosing a spot that is already taken
     if (clickedItem.innerText === "X" || clickedItem.innerText === "O") {
-      //stops users from choosing a spot that is already taken
       korokRockSound.play();
       swal("Spot is already taken! Choose another move.");
-    }
+    };
 
     if (playerTurn === "X") {
       clickedItem.innerText = korokXChoice; //changes text to playerX's choice
@@ -138,8 +141,8 @@ for (let i = 0; i < gridItem.length; i++) {
     //Check Tie
     let gridItems = gridItem[i].innerText; //grabs all the X's and O's entered
     checkTieArray.push(gridItems); //push X's and O's into a new array
+    //check for tie if all boxes are filled AND gameOver still false
     if (checkTieArray.length === 9 && gameOver === false) {
-      //check for tie if all boxes are filled AND gameOver still false
       checkTie();
     } //end check tie
   } //end gridItemClicked() function
