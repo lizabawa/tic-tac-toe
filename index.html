@@ -1,65 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poiret+One&family=Tilt+Prism&display=swap" rel="stylesheet">
-
-    <!--SWEETALERT-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--BOOTSTRAP CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--MY CSS-->
-    <link rel="stylesheet" href="style.css">
-    
-    <title>Korok Tic-Tac-Toe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--GOOGLE FONT-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poiret+One&family=Tilt+Prism&display=swap" rel="stylesheet">
+  <!--SWEETALERT-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!--BOOTSTRAP CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!--MY CSS-->
+  <link rel="stylesheet" href="style.css">
+  <title>Korok Tic-Tac-Toe</title>
 </head>
-
 <body>
   <div class="container">
     <h1>KOROK TIC-TAC-TOE</h1>
   </div>
-    <div class="container">
-        <div class="row">
-          <div class="col col-xs-2" id="player-one"> <!--PLAYER ONE COLUMN-->
-            <h4>Korok X</h4>
-            <img src="https://cdn.dribbble.com/users/789882/screenshots/4133074/media/081c158c4070a1c671fe5ab34329a354.png?resize=400x0" />
-            <p id="korok-x-phrase">"Is it my turn yet?"</p>
-            <h4>Wins:</h4>
-            <p id="korok-x-wins"></p>
-          </div>
-          <div class="col">
-                <!--tic tac toe grid-->
-            <div class="grid-container">
-              <div class="grid-item" id="item0" data-value="val0"></div>
-              <div class="grid-item" id="item1" data-value="val1"></div>
-              <div class="grid-item" id="item2" data-value="val2"></div>
-              <div class="grid-item" id="item3" data-value="val3"></div>
-              <div class="grid-item" id="item4" data-value="val4"></div>
-              <div class="grid-item" id="item5" data-value="val5"></div>
-              <div class="grid-item" id="item6" data-value="val6"></div>
-              <div class="grid-item" id="item7" data-value="val7"></div>
-              <div class="grid-item" id="item8" data-value="val8"></div>
-            </div>
-            <button id="myBtn">Reset Game</button>
-          </div>
-          
-          <div class="col col-xs-2" id="player-two"> <!--PLAYER TWO COLUMN-->
-            <h4>Korok O</h4>
-            <img src="https://cdn.dribbble.com/users/817492/screenshots/3495292/media/4aec192889f92cdc0c61a5e7e0b644da.jpg?resize=400x0" />
-            <p id="korok-o-phrase">"Sigh..waiting for my turn"</p>
-            <h4>Wins:</h4>
-            <p id="korok-o-wins"></p>
-          </div>
+  <div class="container">
+    <div class="row">
+      <div class="col col-xs-2" id="player-one"> <!--PLAYER ONE COLUMN-->
+        <h4>Korok X</h4>
+          <img src="https://cdn.dribbble.com/users/789882/screenshots/4133074/media/081c158c4070a1c671fe5ab34329a354.png?resize=400x0" />
+          <p id="korok-x-phrase">"Is it my turn yet?"</p>
+        <h4>Wins:</h4>
+          <p id="korok-x-wins"></p>
+      </div>
+      <div class="col">
+        <!--tic tac toe grid-->
+        <div class="grid-container">
+          <div class="grid-item" id="item0" data-value="val0"></div>
+          <div class="grid-item" id="item1" data-value="val1"></div>
+          <div class="grid-item" id="item2" data-value="val2"></div>
+          <div class="grid-item" id="item3" data-value="val3"></div>
+          <div class="grid-item" id="item4" data-value="val4"></div>
+          <div class="grid-item" id="item5" data-value="val5"></div>
+          <div class="grid-item" id="item6" data-value="val6"></div>
+          <div class="grid-item" id="item7" data-value="val7"></div>
+          <div class="grid-item" id="item8" data-value="val8"></div>
         </div>
+        <button id="myBtn">Reset Game</button>
+      </div>
+      <div class="col col-xs-2" id="player-two"> <!--PLAYER TWO COLUMN-->
+        <h4>Korok O</h4>
+          <img src="https://cdn.dribbble.com/users/817492/screenshots/3495292/media/4aec192889f92cdc0c61a5e7e0b644da.jpg?resize=400x0" />
+          <p id="korok-o-phrase">"Sigh..waiting for my turn"</p>
+        <h4>Wins:</h4>
+          <p id="korok-o-wins"></p>
+      </div>
     </div>
-
-    <!--BOOTSTRAP-->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <!--MY JS-->
-    <script src="script.js"></script>
+  </div>
+  <!--BOOTSTRAP-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <!--MY JS-->
+  <script src="script.js"></script>
 </body>
 </html>

@@ -24,6 +24,11 @@
 - As a user, I should not be able to continue playing once I win, lose, or tie
 - As a user, I should be able to play the game again without refreshing the page
 
+## MVP
+- **Bronze**
+- **Silver**
+- **Gold**
+
 ## Approach to logic
 - **HTML:** I kept the HTML layout simple. I used Bootstrap to create the gameboard columns, and the tic tac toe board itself consists of a grid-container with grid-items. I did not like how Bootstrap buttons look and so preferred to customize it myself.
 - **CSS:** One of the pivotal pieces of CSS was the .player-turn. I wanted the CSS of the Korok box to change depending on whose turn it was, so I gave it a different background-color and a dotted outline.
