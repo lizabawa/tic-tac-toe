@@ -1,16 +1,32 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
-    /* grid-template-rows: auto auto auto; */
-    padding: 5px;
-    color: rgb(89, 124, 98);
+    grid-template-columns: 150px 150px 150px; /* keeps columns the same size before and after text added*/
+    grid-template-rows: 150px 150px 150px; /* keeps columns the same size before and after text added*/
+    color: rgb(9, 84, 103);
+    justify-content: center; /*keeps gameboard centered upon window resize*/
 }
 
 .grid-item {
     background-color: rgb(241, 227, 206);
-    border: 1px solid;
-    padding: 40px;
+    padding: 50px;
+    display: flex;
+    align-items: center; /*keeps text centered */
+    justify-content: center; /*keeps text centered */
 }
+
+#item0, #item1, #item3, #item4 {
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+}
+
+#item2, #item5 {
+    border-bottom: 3px solid;
+}
+
+#item6, #item7 {
+    border-right: 3px solid;
+}
+
 
 .container {
     background: rgb(102, 144, 112);
@@ -28,14 +44,13 @@
     margin: 5px;
 } 
 
-.player-turn {
+.player-turn { /*indicates player turn */
     background-color: rgb(241, 227, 206);
     border: 4px dotted rgb(9, 84, 103);
 }
 
 img {
     max-width: 100%;
-    max-height: 100%;
 }
 
 body {
@@ -51,11 +66,10 @@ body {
 button {
     background-color: rgb(241, 227, 206);
     margin-top: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .content {
-    max-width: 80%;
+    max-width: 100%; /* stretches content to be the max width of the browser window */
     margin: auto;
 }
-
