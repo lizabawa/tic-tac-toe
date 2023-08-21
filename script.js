@@ -10,6 +10,8 @@ const korokOChoice = "O";
 let gameOver = false; //Initializes game over as false
 let checkTieArray = [];
 let playerTurn = "";
+let xCounter = 0;
+let oCounter = 0;
 
 let korokXPhrase = document.querySelector("#korok-x-phrase");
 let korokOPhrase = document.querySelector("#korok-o-phrase");
@@ -21,12 +23,12 @@ let playerRandom = Math.floor(Math.random() * players.length); //randomly picks 
 if (playerRandom === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
     playerTurn = "X"
     korokX.classList.add("player-turn") 
-    korokXPhrase.innerText = "Korok X begins?! Wow!"
+    korokXPhrase.innerText = '"Korok X begins?! Wow!"'
     console.log("playerX starts")
 } else {
     playerTurn = "O"
     korokO.classList.add("player-turn")
-    korokOPhrase.innerText = "Woo O gets to begin!!"
+    korokOPhrase.innerText = '"Woo O gets to begin!!"'
     console.log("playerO starts")
 };
 
@@ -44,7 +46,7 @@ function checkWin() {
         gameOver = true; //changes game over as true
         korokLaughSound.play()
         setTimeout(() => {swal(`Korok ${playerTurn} wins!`)}, 50) //delays winner alert by 100ms
-    };            
+    };
 };
 
 function checkTie() {
@@ -58,7 +60,8 @@ function checkTie() {
 
 //EVENT LISTENERS
 button.addEventListener("click", () => {
-    location.reload() //this reloads the page but all user input will be lost
+    // location.reload() //this reloads the page but all user input will be lost
+    location.replace("http://127.0.0.1:5500/index.html")
 })
 
 for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and performs the event listener
@@ -83,8 +86,11 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
             korokO.classList.add("player-turn") //adds playerTwo box highlight
             playerTurn = "O" //switches playerTurn back to playerTwo
             console.log(playerTurn)
-            korokOPhrase.innerText = "Woo O's turn!!"
-            korokXPhrase.innerText = "Is it my turn yet?"
+            korokOPhrase.innerText = '"Woo O\'s turn!!"'
+            korokXPhrase.innerText = '"Is it my turn yet?"'
+            } else {
+                xCounter++
+                document.querySelector("#korok-x-wins").innerHTML = `${xCounter}`
             };
         } else {
             clickedItem.innerText = korokOChoice //changes text to playerO's choice
@@ -94,8 +100,11 @@ for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and pe
                 korokX.classList.add("player-turn") //adds playerOne box highlight
                 playerTurn = "X" //switches playerTurn back to playerOne
                 console.log(playerTurn)
-                korokXPhrase.innerText = "It's X's turn!"
-                korokOPhrase.innerText = "Sigh..waiting for my turn"
+                korokXPhrase.innerText = '"It\'s X\'s turn!"'
+                korokOPhrase.innerText = '"Sigh..waiting for my turn"'
+            } else {
+                oCounter++
+                document.querySelector("#korok-o-wins").innerHTML = `${oCounter}`
             }
         };
 
