@@ -14,6 +14,7 @@
 - Visually display which side won if a player gets three in a row, or show a draw if neither player wins
 - Include separate HTML / CSS / JavaScript files
 - Use JavaScript for DOM manipulation
+- Popup alerts to start a new game, when a player wins, there is a tie, or a spot is already taken
 
 ## User Stories
 - As a user, I should be able to start a new tic tac toe game
@@ -26,14 +27,24 @@
 
 ## MVP
 - **Bronze**
+    - Render a game board in the browser
+    - Switch turns between Korok X and Korok O
+    - Visually display which side won if a player gets three in a row, or show a draw if neither player wins
+    - Include separate HTML / CSS / JavaScript files
 - **Silver**
+    - CSS Styling
 - **Gold**
+    - Add responsive sounds
+    - Add a win counter
 
 ## Approach to logic
 - **HTML:** I kept the HTML layout simple. I used Bootstrap to create the gameboard columns, and the tic tac toe board itself consists of a grid-container with grid-items. I did not like how Bootstrap buttons look and so preferred to customize it myself.
-- **CSS:** One of the pivotal pieces of CSS was the .player-turn. I wanted the CSS of the Korok box to change depending on whose turn it was, so I gave it a different background-color and a dotted outline.
-- **Javascript:** I organized the logic by keeping all my variables at the top and event listeners below. At the start of each new round, I wanted a random player to be chosen to go first to be fair, so I used the Math.floor(Math.random()) method. Along with the CSS changing to dictate whose turn it is, I also utilized Javascript classList to add and remove the Korok's phrases depending on who starts and whose turn it is.
-    - **Event Listeners:** I had two event listeners, one to reload the page when the Reset Game button is clicked, and one to listen every time a grid-item was clicked on.
+- **CSS:**
+    - **Player Turns:** One of the pivotal pieces of CSS was the .player-turn. I wanted the CSS of the Korok box to change depending on whose turn it was, so I gave it a different background-color and a dotted outline.
+    - **Window Resizing:** I wanted to ensure that no matter how the window was resized, the gameboard and player boards did not shift outside of their respective container
+- **Javascript:** I organized the logic by keeping all my variables at the top and everything else below.
+    - **Player Turn:**  I used the Math.floor(Math.random()) method so that at the start of each new round, a random player is choosen. Along with the CSS changing to dictate whose turn it is, I also utilized Javascript classList to add and remove the Korok's phrases depending on who starts and whose turn it is.
+    - **Event Listeners:** I had three event listeners. One to listen when the window is reloaded which triggers a popup to start the game. A second to reset the gamebaord when the "Reset Game" button is clicked. A third to listen every time a grid-item was clicked on.
     - **Win Logic:** I listed all the ways a Korok could win using conditional statements.
     - **Tie Logic:** I created a separate function to checkTie that pushes innerText to a new array everytime the innerText is changed, and then iterated through this array to check if all the innerText matched "X" or "O" AND if the game was not yet over, which indicates a tie.
 

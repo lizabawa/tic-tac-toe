@@ -44,11 +44,6 @@
     margin: 5px;
 } 
 
-.player-turn { /*indicates player turn */
-    background-color: rgb(241, 227, 206);
-    border: 4px dotted rgb(9, 84, 103);
-}
-
 img {
     max-width: 100%;
 }
@@ -72,4 +67,9 @@ button {
 .content {
     max-width: 100%; /* stretches content to be the max width of the browser window */
     margin: auto;
+}
+
+.player-turn { /*indicates player turn */
+    background-color: rgb(241, 227, 206);
+    border: 4px dotted rgb(9, 84, 103);
 }
