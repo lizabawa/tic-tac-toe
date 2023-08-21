@@ -2,13 +2,14 @@
 const button = document.querySelector("button");
 const gridItem = document.querySelectorAll(".grid-item");
 
-const playerOne = document.querySelector("#player-one");
-const playerTwo = document.querySelector("#player-two");
-const players = [playerOne, playerTwo];
-const playerXChoice = "X";
-const playerOChoice = "O";
+const korokX = document.querySelector("#player-one");
+const korokO = document.querySelector("#player-two");
+const players = [korokX, korokO];
+const korokXChoice = "X";
+const korokOChoice = "O";
 let gameOver = false; //Initializes game over as false
 let checkTieArray = [];
+let playerTurn = "";
 
 let korokXPhrase = document.querySelector("#korok-x-phrase");
 let korokOPhrase = document.querySelector("#korok-o-phrase");
@@ -16,13 +17,34 @@ let korokResetSound = new Audio('media/yahaha.mp3')
 korokResetSound.play()
 let korokLaughSound = new Audio('media/korok_seed.mp3')
 
-let playerTurn = Math.floor(Math.random() * players.length); //randomly picks a player
-if (playerTurn === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
-    playerOne.classList.add("player-turn") 
+let playerRandom = Math.floor(Math.random() * players.length); //randomly picks a player
+if (playerRandom === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
+    playerTurn = "X"
+    korokX.classList.add("player-turn") 
     korokXPhrase.innerText = "Korok X begins?! Wow!"
+    console.log("playerX starts")
 } else {
-    playerTwo.classList.add("player-turn")
+    playerTurn = "O"
+    korokO.classList.add("player-turn")
     korokOPhrase.innerText = "Woo O gets to begin!!"
+    console.log("playerO starts")
+};
+
+function checkWin() {
+    if (
+    gridItem[0].innerText === gridItem[1].innerText && gridItem[0].innerText === gridItem[2].innerText && gridItem[0].innerText !== "" ||
+    gridItem[3].innerText === gridItem[4].innerText && gridItem[3].innerText === gridItem[5].innerText && gridItem[3].innerText !== "" ||
+    gridItem[6].innerText === gridItem[7].innerText && gridItem[6].innerText === gridItem[8].innerText && gridItem[6].innerText !== "" ||
+    gridItem[0].innerText === gridItem[3].innerText && gridItem[0].innerText === gridItem[6].innerText && gridItem[0].innerText !== "" ||
+    gridItem[1].innerText === gridItem[4].innerText && gridItem[1].innerText === gridItem[7].innerText && gridItem[1].innerText !== "" ||
+    gridItem[2].innerText === gridItem[5].innerText && gridItem[2].innerText === gridItem[8].innerText && gridItem[2].innerText !== "" ||
+    gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[0].innerText !== "" ||
+    gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[2].innerText !== "" 
+    ) {
+        gameOver = true; //changes game over as true
+        korokLaughSound.play()
+        setTimeout(() => {swal(`Korok ${playerTurn} wins!`)}, 50) //delays winner alert by 100ms
+    };            
 };
 
 function checkTie() {
@@ -31,7 +53,7 @@ function checkTie() {
         setTimeout(() => {
             swal("Oooo it's a tie")
         }, 50)
-    }
+    };
 };
 
 //EVENT LISTENERS
@@ -41,64 +63,41 @@ button.addEventListener("click", () => {
 
 for (let i = 0; i < gridItem.length; i++) { //Iterates through grid items and performs the event listener
     gridItem[i].addEventListener("click", gridItemClicked); //listens for if a gridItem is clicked
-    // console.log("gridItem[i] values: " + gridItem[i].dataset.value)
 
     function gridItemClicked(event) {
         const clickedItem = event.target; //sets whichever grid item is clicked on as the event target
-        let datasetValue = clickedItem.dataset.value //retreives the value of the div with data-value attribute
-        // console.log("clickedItem value: " + datasetValue)
         
         if (gameOver === true) { //keeps the game from continuing once a winner has been declared
             return
-        }
+        };
         
         if (clickedItem.innerText === "X" || clickedItem.innerText === "O") { //stops users from choosing a spot that is already taken
             swal("Spot is already taken! Choose another move.")
+        };
+
+        if (playerTurn === "X") {
+            clickedItem.innerText = korokXChoice //changes text to playerX's choice
+            checkWin()
+            if (gameOver === false ) {
+            korokX.classList.remove("player-turn") //removes playerOne box highlight
+            korokO.classList.add("player-turn") //adds playerTwo box highlight
+            playerTurn = "O" //switches playerTurn back to playerTwo
+            console.log(playerTurn)
+            korokOPhrase.innerText = "Woo O's turn!!"
+            korokXPhrase.innerText = "Is it my turn yet?"
+            };
         } else {
-            if (playerTurn === 0) {
-                clickedItem.innerText = playerXChoice //changes text to playerX's choice
-                if (gridItem[0].innerText === gridItem[1].innerText && gridItem[0].innerText === gridItem[2].innerText && gridItem[1].innerText === gridItem[2].innerText && gridItem[0].innerText !== "" ||
-                gridItem[3].innerText === gridItem[4].innerText && gridItem[3].innerText === gridItem[5].innerText && gridItem[4].innerText === gridItem[5].innerText && gridItem[3].innerText !== ""  ||
-                gridItem[6].innerText === gridItem[7].innerText && gridItem[6].innerText === gridItem[8].innerText && gridItem[7].innerText === gridItem[8].innerText && gridItem[6].innerText !== ""  ||
-                gridItem[0].innerText === gridItem[3].innerText && gridItem[0].innerText === gridItem[6].innerText && gridItem[3].innerText === gridItem[6].innerText && gridItem[0].innerText !== ""  ||
-                gridItem[1].innerText === gridItem[4].innerText && gridItem[1].innerText === gridItem[7].innerText && gridItem[4].innerText === gridItem[7].innerText && gridItem[1].innerText !== ""  ||
-                gridItem[2].innerText === gridItem[5].innerText && gridItem[2].innerText === gridItem[8].innerText && gridItem[5].innerText === gridItem[8].innerText && gridItem[2].innerText !== ""  ||
-                gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText && gridItem[0].innerText !== ""  ||
-                gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText && gridItem[2].innerText !== "" 
-                    ) {
-                    gameOver = true; //changes game over as true
-                    korokLaughSound.play()
-                    setTimeout(() => {swal("Player X Wins!")}, 50) //delays winner alert by 100ms
-                } else {
-                    playerOne.classList.remove("player-turn") //removes playerOne box highlight
-                    playerTwo.classList.add("player-turn") //adds playerTwo box highlight
-                    playerTurn = 1 //switches playerTurn back to playerTwo
-                    korokOPhrase.innerText = "Woo O's turn!!"
-                    korokXPhrase.innerText = "Is it my turn yet?"
-                }
-            } else {
-                clickedItem.innerText = playerOChoice //changes text to playerO's choice
-                if (gridItem[0].innerText === gridItem[1].innerText && gridItem[0].innerText === gridItem[2].innerText && gridItem[1].innerText === gridItem[2].innerText && gridItem[0].innerText !== "" ||
-                gridItem[3].innerText === gridItem[4].innerText && gridItem[3].innerText === gridItem[5].innerText && gridItem[4].innerText === gridItem[5].innerText && gridItem[3].innerText !== ""  ||
-                gridItem[6].innerText === gridItem[7].innerText && gridItem[6].innerText === gridItem[8].innerText && gridItem[7].innerText === gridItem[8].innerText && gridItem[6].innerText !== ""  ||
-                gridItem[0].innerText === gridItem[3].innerText && gridItem[0].innerText === gridItem[6].innerText && gridItem[3].innerText === gridItem[6].innerText && gridItem[0].innerText !== ""  ||
-                gridItem[1].innerText === gridItem[4].innerText && gridItem[1].innerText === gridItem[7].innerText && gridItem[4].innerText === gridItem[7].innerText && gridItem[1].innerText !== ""  ||
-                gridItem[2].innerText === gridItem[5].innerText && gridItem[2].innerText === gridItem[8].innerText && gridItem[5].innerText === gridItem[8].innerText && gridItem[2].innerText !== ""  ||
-                gridItem[0].innerText === gridItem[4].innerText && gridItem[0].innerText === gridItem[8].innerText && gridItem[4].innerText === gridItem[8].innerText && gridItem[0].innerText !== ""  ||
-                gridItem[2].innerText === gridItem[4].innerText && gridItem[2].innerText === gridItem[6].innerText && gridItem[4].innerText === gridItem[6].innerText && gridItem[2].innerText !== "" 
-                    ) {
-                    gameOver = true; //changes game over as true
-                    korokLaughSound.play()
-                    setTimeout(() => {swal("Player O Wins!")}, 50) //delays winner alert by 100ms
-                } else {
-                    playerTwo.classList.remove("player-turn") //removes playerTwo box highlight
-                    playerOne.classList.add("player-turn") //adds playerOne box highlight
-                    playerTurn = 0 //switches playerTurn back to playerOne
-                    korokXPhrase.innerText = "It's X's turn!"
-                    korokOPhrase.innerText = "Sigh..waiting for my turn"
-                }
+            clickedItem.innerText = korokOChoice //changes text to playerO's choice
+            checkWin()
+            if (gameOver === false ) {
+                korokO.classList.remove("player-turn") //removes playerTwo box highlight
+                korokX.classList.add("player-turn") //adds playerOne box highlight
+                playerTurn = "X" //switches playerTurn back to playerOne
+                console.log(playerTurn)
+                korokXPhrase.innerText = "It's X's turn!"
+                korokOPhrase.innerText = "Sigh..waiting for my turn"
             }
-        } //end main if else statement
+        };
 
         //Check Tie
         let gridItems = gridItem[i].innerText //grabs all the X's and O's entered
