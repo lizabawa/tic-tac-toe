@@ -1,6 +1,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
+    /* grid-template-rows: auto auto auto; */
     padding: 5px;
     color: rgb(89, 124, 98);
 }
@@ -52,3 +53,9 @@ button {
     margin-top: 30px;
     font-family: Georgia, 'Times New Roman', Times, serif
 }
+
+.content {
+    max-width: 80%;
+    margin: auto;
+}
+

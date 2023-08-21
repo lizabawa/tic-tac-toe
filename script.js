@@ -17,6 +17,15 @@ const korokYahahaSound = new Audio('media/yahaha.mp3');
 const korokSeedSound = new Audio('media/korok_seed.mp3');
 const korokRockSound = new Audio('media/dropping_rock_korok.mp3');
 const korokAppearSound = new Audio('media/korok_appear_short.mp3');
+// korokAppearSound.play();
+
+window.addEventListener("load", () => { //upon window loading Event Listener
+    swal({
+        title: "You found us!",
+        text: "Let's start the game!",
+        button: "Ahh yiss!"
+    })
+})
 
 let playerRandom = Math.floor(Math.random() * players.length); //randomly picks a player
 if (playerRandom === 0) { //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
@@ -28,15 +37,6 @@ if (playerRandom === 0) { //if it's playerX's turn, their box is highlighted els
     korokO.classList.add("player-turn")
     korokOPhrase.innerText = '"Woo O gets to begin!!"'
 };
-
-window.addEventListener("load", () => { //upon window loading Event Listener
-    korokAppearSound.play()
-    swal({
-        title: "You found us!",
-        text: "Let's start the game!",
-        button: "Ahh yiss!"
-    })
-})
 
 function checkWin() {
     if (
