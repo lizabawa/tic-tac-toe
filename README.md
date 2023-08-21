@@ -3,10 +3,10 @@
 ## Product Design/Wire-Frame
 - **Theme:** Zelda: Tears of The Kingdom Koroks
 - **Wireframe:**
-- ADD PHOTO OF WIREFRAM HERE
+- ![basic wireframe] (media/tic-tac-toe-wireframe.jpg)
 
 ## User Interface
--ADD PHOTO OF UI HERE
+- ![ttt ui] (media/ttt-ui.png)
 
 ## List of Features
 - Render a game board in the browser
@@ -35,6 +35,8 @@
 ## Favorite Functions Logic
 
 ## List of Technologies and Resources Used
-- **Bootstrap:** https://getbootstrap.com/docs/5.3/getting-started/download/
-- **Korok O Image:** https://dribbble.com/shots/4133074-Yahaha
-- **Korok X Image:** https://dribbble.com/shots/3495292-Yahaha-Korok-Chio
+- [Bootstrap] (https://getbootstrap.com/docs/5.3/getting-started/download/)
+- [SweetAlert] (https://sweetalert.js.org/)
+- [Zedge] (https://www.zedge.net/ringtones-and-wallpapers)
+- [Korok O Image] (https://dribbble.com/shots/4133074-Yahaha)
+- [Korok X Image] (https://dribbble.com/shots/3495292-Yahaha-Korok-Chio)
