@@ -12,18 +12,14 @@
     display: flex;
     align-items: center; /*keeps text centered */
     justify-content: center; /*keeps text centered */
+    font-size: 30px;
 }
 
-#item0, #item1, #item3, #item4 {
-    border-right: 3px solid;
+#item0, #item1, #item2, #item3, #item4, #item5 {
     border-bottom: 3px solid;
 }
 
-#item2, #item5 {
-    border-bottom: 3px solid;
-}
-
-#item6, #item7 {
+#item0, #item1, #item3, #item4, #item6, #item7 {
     border-right: 3px solid;
 }
 
@@ -67,6 +63,11 @@ button {
 .content {
     max-width: 100%; /* stretches content to be the max width of the browser window */
     margin: auto;
+}
+
+.grid-item:hover::before {
+    content: attr(data-player-turn); /* sets player-turn as a grid-item attribute */
+    position: absolute; /* texts hovers directly over instead of beside */
 }
 
 .player-turn { /*indicates player turn */

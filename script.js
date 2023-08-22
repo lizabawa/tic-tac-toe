@@ -6,16 +6,16 @@ const korokO = document.querySelector("#player-two");
 const players = [korokX, korokO];
 const korokXChoice = "X";
 const korokOChoice = "O";
-let gameOver = false; //Initializes game over as false
-let checkTieArray = [];
-let playerTurn = "";
-let xCounter = 0;
-let oCounter = 0;
 let korokXPhrase = document.querySelector("#korok-x-phrase");
 let korokOPhrase = document.querySelector("#korok-o-phrase");
 const korokYahahaSound = new Audio("media/yahaha.mp3");
 const korokSeedSound = new Audio("media/korok_seed.mp3");
 const korokRockSound = new Audio("media/dropping_rock_korok.mp3");
+let gameOver = false; //Initializes game over as false
+let checkTieArray = [];
+let playerTurn = "";
+let xCounter = 0;
+let oCounter = 0;
 
 function playerRandom() {
   let playerRandom = Math.floor(Math.random() * players.length);
@@ -81,7 +81,7 @@ window.addEventListener("load", () => {
   swal({
     title: "You found us!",
     text: "Let's start the game!",
-    button: "Ahh yiss!",
+    button: "Aw yiss!",
     closeOnClickOutside: false,
   });
   playerRandom();
@@ -91,18 +91,32 @@ window.addEventListener("load", () => {
 for (let i = 0; i < gridItem.length; i++) {
   //listens for if a gridItem is clicked
   gridItem[i].addEventListener("click", gridItemClicked);
+  //event listeners for hover effect
+  gridItem[i].addEventListener("mouseover", () => {
+    if (gameOver === false) {
+      gridItem[i].setAttribute("data-player-turn", `${playerTurn}`);
+    }
+  });
+  gridItem[i].addEventListener("mouseout", () => {
+      gridItem[i].removeAttribute("data-player-turn")
+  });
+
   //RESET GAME BUTTON EVENT LISTENER
   button.addEventListener("click", () => {
     korokYahahaSound.play();
     gridItem[i].innerHTML = "";
     checkTieArray = [];
     gameOver = false;
+    korokX.classList.remove("player-turn"); //removes playerturn highliht
+    korokO.classList.remove("player-turn"); //removes playerturn highlight
+    playerRandom() //assigns first turn to random player
   });
   //sets whichever grid item is clicked on as the event target
   function gridItemClicked(event) {
     const clickedItem = event.target;
     //keeps the game from continuing once a winner has been declared
     if (gameOver === true) {
+      playerTurn = "";
       return;
     };
     //stops users from choosing a spot that is already taken
@@ -139,7 +153,7 @@ for (let i = 0; i < gridItem.length; i++) {
       }
     }
     //Check Tie
-    let gridItems = gridItem[i].innerText; //grabs all the X's and O's entered
+    let gridItems = gridItem[i].innerText; //each X and O entered
     checkTieArray.push(gridItems); //push X's and O's into a new array
     //check for tie if all boxes are filled AND gameOver still false
     if (checkTieArray.length === 9 && gameOver === false) {

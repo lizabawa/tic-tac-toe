@@ -9,11 +9,12 @@
 ![ttt ui](media/ttt-ui.png)
 
 ## List of Features
-- Choose a random player to start
+- Choose a random player to start at the beginning of the game and after each game reset
 - Switch turns between Korok X and Korok O
 - Highlight player turn
 - Popup alerts to start a new game, when a player wins, there is a tie, or a spot is already taken
 - Responsive sounds based on win, tie, move repeat, or gameboard reset
+- Hover Effect over grid items with the symbol of player turn
 
 ## User Stories
 - As a user, I should be able to start a new tic tac toe game
@@ -37,17 +38,18 @@
     - Add responsive sounds
     - Add a win counter
     - Responsive CSS Styling
+    - Player Turn Hover Effect
 
 ## Approach to logic
 - **HTML:** I kept the HTML layout simple. Bootstrap was used to create the gameboard columns, and the tic tac toe board itself consists of a grid-container with grid-items. I did not like how Bootstrap buttons look and so used an HTML button in order to customize it myself.
 - **CSS:**
-    - **Player Turns:** One of the pivotal pieces of CSS was the .player-turn. I wanted the CSS of the Korok box to change depending on whose turn it was, so I gave it a different background-color and a dotted outline.
+    - **Player Turns:** One of the pivotal pieces of CSS was the .player-turn. I wanted the Korok box CSS to change depending on whose turn it was, so I gave it a different background-color and a dotted outline. I also wanted a hover effect reflecting the symbol of whomever's turn it was.
     - **Window Resizing:** I wanted to ensure that no matter how the window was resized, the gameboard and player boards did not shift outside of their respective container
     - **Font:** I used an external style google font in order to match the woodland Korok theme
 - **Javascript:** 
     - **Organization:** I organized the logic by keeping most of the variables at the top, then any functions, and lastly, event listeners along with the core logic code.
-    - **Player Turn:**  I used the Math.floor(Math.random()) method so that at the start of each new round, a random player is choosen. Along with the CSS changing to dictate whose turn it is, I also utilized Javascript classList to add and remove the Korok's phrases depending on who starts and whose turn it is.
-    - **Event Listeners:** I had three event listeners. One to listen when the window is reloaded which triggers a popup to start the game. A second to reset the gamebaord when the "Reset Game" button is clicked. A third to listen every time a grid-item was clicked on.
+    - **Player Turn:**  I used the Math.floor(Math.random()) method so that at the start of the game AND each new round, a random player is choosen. Along with the CSS changing to dictate whose turn it is, I also utilized Javascript classList to add and remove the Korok's phrases depending on who starts and whose turn it is.
+    - **Event Listeners:** I had five event listeners. One to listen when the window is reloaded which triggers a popup to start the game. A second to reset the gameboard when the "Reset Game" button is clicked. A third to listen every time a grid-item was clicked on. The remaining two were the mouseover and mouseout listeners for the css hover effect.
     - **Win Logic:** I listed all the ways a Korok could win using conditional statements.
     - **Tie Logic:** I created a separate function to checkTie that pushes innerText to a new array everytime the innerText is changed, and then iterated through this array to check if all the innerText matched "X" or "O" AND if the game was not yet over, which indicates a tie.
 
