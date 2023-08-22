@@ -11,6 +11,7 @@ let korokOPhrase = document.querySelector("#korok-o-phrase");
 const korokYahahaSound = new Audio("media/yahaha.mp3");
 const korokSeedSound = new Audio("media/korok_seed.mp3");
 const korokRockSound = new Audio("media/dropping_rock_korok.mp3");
+const korokAppearSound = new Audio("media/korok_appear_short.mp3");
 let gameOver = false; //Initializes game over as false
 let checkTieArray = [];
 let playerTurn = "";
@@ -22,10 +23,12 @@ function playerRandom() {
   //if it's playerX's turn, their box is highlighted else playerO's box is highlighted
   if (playerRandom === 0) {
     playerTurn = "X";
+    korokO.classList.remove("player-turn"); //removes playerturn highlight
     korokX.classList.add("player-turn");
     korokXPhrase.innerText = '"Korok X begins?! Wow!"';
   } else {
     playerTurn = "O";
+    korokX.classList.remove("player-turn"); //removes playerturn highlight
     korokO.classList.add("player-turn");
     korokOPhrase.innerText = '"Woo O gets to begin!!"';
   }
@@ -79,9 +82,9 @@ function checkTie() {
 //upon window loading Event Listener
 window.addEventListener("load", () => {
   swal({
-    title: "You found us!",
-    text: "Let's start the game!",
-    button: "Aw yiss!",
+    title: "Yahaha! You found us!",
+    text: "Let's begin the game.",
+    button: "Aw yisss!",
     closeOnClickOutside: false,
   });
   playerRandom();
@@ -107,8 +110,6 @@ for (let i = 0; i < gridItem.length; i++) {
     gridItem[i].innerHTML = "";
     checkTieArray = [];
     gameOver = false;
-    korokX.classList.remove("player-turn"); //removes playerturn highliht
-    korokO.classList.remove("player-turn"); //removes playerturn highlight
     playerRandom() //assigns first turn to random player
   });
   //sets whichever grid item is clicked on as the event target
